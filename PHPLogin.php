@@ -598,38 +598,38 @@ class PHPLogin
      * Sets a random token into the database (that will verify the user when he/she comes back via the link
      * in the email) and sends the according email.
      */
-    public function setPasswordResetDatabaseTokenAndSendMail($user_name)
+    public function setPasswordResetDatabaseTokenAndSendMail($user_name_or_email)
     {
-        $user_name = trim($user_name);
+        $user_name_or_email = trim($user_name_or_email);
 
-        if (empty($user_name)) {
+        if (empty($user_name_or_email)) {
             $this->errors[] = MESSAGE_USERNAME_EMPTY;
 
         } else {
-            // generate timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
-            // btw this is an integer ;)
-            $temporary_timestamp = time();
-            // generate random hash for email password reset verification (40 char string)
-            $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
             // database query, getting all the info of the selected user
-            $result_row = $this->getUserData($user_name);
+            $result_row = (strrpos($user_name_or_email, "@") === false) ? $this->getUserData($user_name_or_email) : $this->getUserDataFromEmail($user_name_or_email);
 
             // if this user exists
             if (isset($result_row->user_id)) {
 
+                // generate timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
+                $temporary_timestamp = time();
+                // generate random hash for email password reset verification (40 char string)
+                $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
+
                 // database query:
                 $query_update = $this->db_connection->prepare('UPDATE users SET user_password_reset_hash = :user_password_reset_hash,
                                                                user_password_reset_timestamp = :user_password_reset_timestamp
-                                                               WHERE user_name = :user_name');
+                                                               WHERE user_id = :user_id');
                 $query_update->bindValue(':user_password_reset_hash', $user_password_reset_hash, PDO::PARAM_STR);
                 $query_update->bindValue(':user_password_reset_timestamp', $temporary_timestamp, PDO::PARAM_INT);
-                $query_update->bindValue(':user_name', $user_name, PDO::PARAM_STR);
+                $query_update->bindValue(':user_id', $result_row->user_id, PDO::PARAM_INT);
                 $query_update->execute();
 
                 // check if exactly one row was successfully changed:
                 if ($query_update->rowCount() == 1) {
                     // send a mail to the user, containing a link with that token hash string
-                    $this->sendPasswordResetMail($user_name, $result_row->user_email, $user_password_reset_hash);
+                    $this->sendPasswordResetMail($result_row->user_name, $result_row->user_email, $user_password_reset_hash);
                     return true;
                 } else {
                     $this->errors[] = MESSAGE_DATABASE_ERROR;
@@ -798,8 +798,13 @@ class PHPLogin
         $user_name = substr(trim($user_name), 0, 64);
         $user_email = substr(trim($user_email), 0, 254);
 
-        // check provided data validity
-        if (strtolower($captcha) != strtolower($_SESSION['captcha'])) {
+        // first check database connection
+        if ($this->databaseConnection() == false) {
+            $this->errors[] = MESSAGE_DATABASE_ERROR;
+        }
+
+        // then, check provided data validity
+        else if (strtolower($captcha) != strtolower($_SESSION['captcha'])) {
             $this->errors[] = MESSAGE_CAPTCHA_WRONG;
         } elseif (empty($user_name)) {
             $this->errors[] = MESSAGE_USERNAME_EMPTY;
