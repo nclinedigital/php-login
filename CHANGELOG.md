@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+**February 20th 2015**
+- email address can now be used in the lost password feature (like username)
+- add html5 input attributes inside forms (required, autofocus, autocomplete)
+- bug fix: check database connection in registereNewUser()
+- update PHPMailer and SMTP libraries from version 5.2.8 to 5.2.9
+
 **May 25th 2014**
 - update PHPMailer and SMTP libraries from version 5.2.7 to 5.2.8
 - add Russian translation file
