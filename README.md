@@ -10,7 +10,7 @@ A simple, but secure PHP login script with many features includes :
 - edit user data (password, username, email)
 - "remember me" / stay logged in cookies
 - **"remember me" supports parallel login from multiple devices <- NEW**
-- **i18n/internationalization: English, French at the moment but it's easy to add a new language <- NEW**
+- **i18n/internationalization: English, French, German, Russian, Persian at the moment but it's easy to add a new language <- NEW**
 - **possibility to manage some user access levels <- NEW**
 - **a beautiful CSS style <-NEW**
 - gravatars
@@ -19,8 +19,6 @@ IT stuffs...
 - PDO used for database access
 - mail sending via PHPMailer (SMTP or PHP's mail() function/linux sendmail)
 - Uses the ultra-modern & future-proof PHP 5.5.BLOWFISH hashing/salting functions (includes the official PHP 5.3 & PHP 5.4 compatibility pack, which makes those functions available in those versions too)
-
-You can also visit [Professional MVC Version](https://github.com/panique/php-login) if you look for a MVC Framework Version.
 
 ## Screenshot
 
@@ -47,9 +45,7 @@ No live demo page available at the moment
 * 2. in `config/config.php`, change mySQL user and password (*DB_USER* and *DB_PASS*).
 * 3. in `config/config.php`, change *COOKIE_DOMAIN* to your domain name (and don't forget to put the dot in front of the domain!)
 * 4. in `config/config.php`, change *COOKIE_SECRET_KEY* to a random string. this will make your cookies more secure
-* 5. change the URL part of EMAIL_PASSWORDRESET_URL and EMAIL_VERIFICATION_URL in `config/config.php` to your URL! You need to provide the URL of your project here to link to your project from within
-verification/password reset mails.
-* 6. as this version uses email sending, you'll need to a) provide an SMTP account in the config OR b) install a mail server tool on your server.
+* 5. as this version uses email sending, you'll need to a) provide an SMTP account in the config OR b) install a mail server tool on your server.
 Using a real SMTP provider (like [SMTP2GO](http://www.smtp2go.com/?s=devmetal) etc.) is highly recommended. Sending emails manually via mail() is something for hardcore admins.
 Usually mails sent via mail() will never reach the receiver. Please also don't try weird Gmail setups, this can fail to a lot of reasons.
 Get professional and send mails like mail should be sent. It's extremely cheap and works.
