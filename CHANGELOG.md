@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+**May 3rd 2015**
+- add German and Persian translation files
+
 **February 20th 2015**
 - email address can now be used in the lost password feature (like username)
 - add html5 input attributes inside forms (required, autofocus, autocomplete)
