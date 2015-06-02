@@ -1,9 +1,8 @@
 <?php
 /**
  * handles the user login/logout/session
- * @author devplanete (2013 - 2014)
- * @author Panique (2012 - 2013)
- * @link https://github.com/devplanete/php-login-advanced
+ * @author nclinedigital (2015)
+ * @link https://github.com/nclinedigital/php-login
  * @license http://opensource.org/licenses/MIT MIT License
  */
 class PHPLogin

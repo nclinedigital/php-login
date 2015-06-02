@@ -1,8 +1,8 @@
 <?php
 /**
- * A simple PHP Login Script / ADVANCED VERSION
+ * PHP Login
  *
- * @link https://github.com/devplanete/php-login-advanced
+ * @link https://github.com/nclinedigital/php-login
  * @license http://opensource.org/licenses/MIT MIT License
  */
 

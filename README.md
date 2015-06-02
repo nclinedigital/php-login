@@ -12,21 +12,13 @@ A simple, but secure PHP login script with many features includes :
 - **"remember me" supports parallel login from multiple devices <- NEW**
 - **i18n/internationalization: English, French, German, Russian, Persian at the moment but it's easy to add a new language <- NEW**
 - **possibility to manage some user access levels <- NEW**
-- **a beautiful CSS style <-NEW**
+- ** Bootstrap 3 Style <-NEW**
 - gravatars
 
 IT stuffs...
 - PDO used for database access
 - mail sending via PHPMailer (SMTP or PHP's mail() function/linux sendmail)
 - Uses the ultra-modern & future-proof PHP 5.5.BLOWFISH hashing/salting functions (includes the official PHP 5.3 & PHP 5.4 compatibility pack, which makes those functions available in those versions too)
-
-## Screenshot
-
-![Example screenshot](https://cloud.githubusercontent.com/assets/5228432/2852514/5cdb4126-d136-11e3-802e-c3ade2455cb5.png)
-
-## Live-demo
-
-No live demo page available at the moment
 
 ## Requirements
 
@@ -41,7 +33,7 @@ No live demo page available at the moment
 
 ## Installation (quick setup)
 
-* 1. create database *login* and tables *users* and *user_connections* via the SQL statements in the `_installation` folder.
+* 1. create database *phplogin* and tables *users* and *user_connections* via the SQL statements in the `_installation` folder.
 * 2. in `config/config.php`, change mySQL user and password (*DB_USER* and *DB_PASS*).
 * 3. in `config/config.php`, change *COOKIE_DOMAIN* to your domain name (and don't forget to put the dot in front of the domain!)
 * 4. in `config/config.php`, change *COOKIE_SECRET_KEY* to a random string. this will make your cookies more secure
@@ -97,18 +89,3 @@ If you look into the code and at the file/folder-structure everything should be 
 
 Licensed under [MIT](http://www.opensource.org/licenses/mit-license.php). You can use this script for free for any
 private or commercial projects.
-
-## Contribute
-
-If you want to add new features etc, please contribute into the https://github.com/devplanete/php-login-advanced repo.
-Please commit only in *develop* branch. The *master* branch will always contain the stable version.
-
-## Support / Donate
-
-If you think this script is useful and saves you a lot of work, then think about supporting the project:
-
-1. Contribute to this project. Feel free to improve this project with your skills.
-
-## Stats
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/panique/php-login-advanced/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
